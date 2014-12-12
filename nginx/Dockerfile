@@ -1,6 +1,10 @@
 FROM base/archlinux
 
-RUN pacman -Syu --noconfirm
+RUN pacman -Sy --noconfirm \
+	&& pacman -S reflector --noconfirm \
+	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
+	&& pacman -Su --noconfirm
+
 RUN pacman -S nginx --noconfirm
 
 RUN echo "/usr/bin/nginx -g 'pid /run/nginx.pid; error_log stderr;'" > /start-daemon.sh \
