@@ -3,7 +3,8 @@ FROM base/archlinux
 RUN pacman -Sy --noconfirm \
 	&& pacman -S reflector --noconfirm \
 	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
-	&& pacman -Su --noconfirm
+	&& pacman -Su --noconfirm \
+	&& pacman-db-upgrade
 	
 RUN pacman -S sudo postgresql --noconfirm
 RUN sudo -u postgres initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'

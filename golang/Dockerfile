@@ -4,7 +4,8 @@ RUN pacman -Sy --noconfirm \
 	&& pacman -S reflector --noconfirm \
 	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
 	&& pacman -Su --noconfirm \
-	&& pacman -S base-devel --noconfirm
+	&& pacman -S base-devel --noconfirm \
+	&& pacman-db-upgrade
 
 RUN pacman -S curl mercurial git --noconfirm
 
