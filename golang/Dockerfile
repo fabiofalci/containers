@@ -4,10 +4,9 @@ RUN pacman -Sy --noconfirm \
 	&& pacman -S reflector --noconfirm \
 	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
 	&& pacman -Su --noconfirm \
-	&& pacman -S base-devel --noconfirm \
 	&& pacman-db-upgrade
 
-RUN pacman -S curl mercurial git --noconfirm
+RUN pacman -S base-devel curl mercurial git --noconfirm
 
 RUN curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 
