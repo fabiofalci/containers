@@ -3,5 +3,5 @@ FROM archlinux-aur
 RUN pacman -Syu --noconfirm \
 	&& pacman-db-upgrade
 	
-RUN yaourt -S mitmproxy --noconfirm
+RUN  sudo -u pacman yaourt -S mitmproxy-git --noconfirm
 
