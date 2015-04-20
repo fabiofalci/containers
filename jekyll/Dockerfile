@@ -3,8 +3,9 @@ FROM base/archlinux
 RUN pacman -Sy --noconfirm \
 	&& pacman -S reflector --noconfirm \
 	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
+	&& pacman-key --refresh-keys \
 	&& pacman -Su --noconfirm \
-	&& pacman-db-upgrade
+	&& pacman-db-upgrade 
 
 RUN pacman -S base-devel rubygems nodejs python2 --noconfirm
 
