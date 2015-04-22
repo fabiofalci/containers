@@ -3,11 +3,12 @@ FROM base/archlinux
 RUN pacman -Sy --noconfirm \
 	&& pacman -S reflector --noconfirm \
 	&& reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist	\
+	&& pacman-key --refresh-keys \
 	&& pacman -Su --noconfirm \
 	&& pacman-db-upgrade \
 	&& pacman -S base-devel --noconfirm
 
-ENV LC_ALL en_US.UTF-8
+LC_ALL ENV en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
