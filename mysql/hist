@@ -1,0 +1,9 @@
+    1  mkfifo /tmp/sqlpipe
+    2  sleep 2147483647 > /tmp/sqlpipe &
+    3  PID=$!
+    4  mysql -h 104.197.87.232 -u foodit-dev-backoffice-read --password=trctVpL8d6z8rXFq backoffice_db < /tmp/sqlpipe &
+    5  echo "select 1;" > /tmp/sqlpipe
+    6  echo "select 1;" > /tmp/sqlpipe
+    7  echo "show tables;" > /tmp/sqlpipe
+    8  kill -s SIGINT $PID
+
